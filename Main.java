@@ -9,13 +9,14 @@ public class Main{
 		JFrame gframe = new JFrame("Space War");
 		gframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gframe.setSize(400, 650);
+		SpaceShip y = new SpaceShip(180, 550, 20, 20);
 		gframe.getContentPane().setLayout(new BorderLayout());
 		GamePanel gp = new GamePanel();
-		GameEngine engine = new GameEngine(gp);
+		GameEngine engine = new GameEngine(gp, y);
 		
 		
-		//gframe.getContentPane().setBackground(Color.BLACK);
 		gframe.getContentPane().add(gp, BorderLayout.CENTER);
 		gframe.setVisible(true);
+		engine.start();
 	}
 }

@@ -10,6 +10,7 @@ public class GamePanel extends JPanel{
 
 	private BufferedImage buffer_image;
 	Graphics2D buffer_image_graphic;
+	ArrayList<Sprite> sprites = new ArrayList<Sprite>();
 	
 	public GamePanel(){
 		buffer_image = new BufferedImage(400,600, BufferedImage.TYPE_INT_ARGB);
@@ -18,6 +19,12 @@ public class GamePanel extends JPanel{
 	}
 	public void updateGameUI(){
 		buffer_image_graphic.clearRect(0, 0, 400, 600);
+		buffer_image_graphic.setColor(Color.WHITE);		
+ 		
+ 		for(Sprite s : sprites){
+ 			s.draw(buffer_image_graphic);
+ 		}
+ 		
 		repaint();
 	}
 	@Override
