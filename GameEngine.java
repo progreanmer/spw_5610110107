@@ -38,13 +38,26 @@ import java.util.Iterator;
 		enemies.add(e);
 	}
 	private void process(){
-	if(Math.random() < difficulty){
-		generateEnemy();
-	}
-	Iterator<Enemy> e_iter = enemies.iterator();
+		if(Math.random() < difficulty){
+			generateEnemy();
+		}
+		Iterator<Enemy> e_iter = enemies.iterator();
 		while(e_iter.hasNext()){
 			Enemy e = e_iter.next();
 			e.proceed();
-	}	
-	gp.updateGameUI();}
+		}	
+		gp.updateGameUI();
+		Rectangle2D.Double yr = y.getRectangle();
+		Rectangle2D.Double er;
+		for(Enemy e : enemies){
+			er = e.getRectangle();
+			if(er.intersects(yr)){
+				die();
+				return;
+			}
+		}
+	}
+	public void die(){
+		timer.stop();
+	}
  } 
