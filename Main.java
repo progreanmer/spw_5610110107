@@ -13,6 +13,7 @@ public class Main{
 		gframe.getContentPane().setLayout(new BorderLayout());
 		GamePanel gp = new GamePanel();
 		GameEngine engine = new GameEngine(gp, y);
+		gframe.addKeyListener(engine);
 		
 		
 		gframe.getContentPane().add(gp, BorderLayout.CENTER);

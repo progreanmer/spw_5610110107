@@ -8,7 +8,7 @@ package f2.spw;
 import java.util.ArrayList;
 import java.util.Iterator;
  
- public class GameEngine{
+ public class GameEngine implements KeyListener{
  	GamePanel gp;
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private Timer timer;
@@ -17,7 +17,7 @@ import java.util.Iterator;
  	public GameEngine(GamePanel gp, SpaceShip y) {
  		this.gp = gp;
  		this.y = y;
- 		gp.updateGameUI();
+ 		//gp.updateGameUI();
 		gp.sprites.add(y);
  			
 		timer = new Timer(50, new ActionListener() {
@@ -45,6 +45,11 @@ import java.util.Iterator;
 		while(e_iter.hasNext()){
 			Enemy e = e_iter.next();
 			e.proceed();
+			if(!e.isAlive()){
+				e_iter.remove();
+				gp.sprites.remove(e);
+				
+			}
 		}	
 		gp.updateGameUI();
 		Rectangle2D.Double yr = y.getRectangle();
@@ -59,5 +64,32 @@ import java.util.Iterator;
 	}
 	public void die(){
 		timer.stop();
+	}
+	void controlVehicle(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_LEFT:
+			y.move(-1);
+			break;
+		case KeyEvent.VK_RIGHT:
+			y.move(1);
+			break;
+		case KeyEvent.VK_D:
+			difficulty += 0.1;
+			break;
+	}}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		controlVehicle(e);
+	}
+	
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		//do nothing
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		//do nothing		
 	}
  } 
