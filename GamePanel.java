@@ -17,10 +17,10 @@ public class GamePanel extends JPanel{
 		buffer_image_graphic = (Graphics2D) buffer_image.getGraphics();
 		buffer_image_graphic.setBackground(Color.BLACK);
 	}
-	public void updateGameUI(){
+	public void updateGameUI(GameEngine reporter){
 		buffer_image_graphic.clearRect(0, 0, 400, 600);
-		buffer_image_graphic.setColor(Color.WHITE);		
- 		
+		buffer_image_graphic.setColor(Color.WHITE);			
+		buffer_image_graphic.drawString(String.format("%08d", reporter.getScore()), 300, 20);
  		for(Sprite s : sprites){
  			s.draw(buffer_image_graphic);
  		}

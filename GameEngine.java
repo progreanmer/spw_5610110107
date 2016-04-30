@@ -12,12 +12,12 @@ import java.util.Iterator;
  	GamePanel gp;
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private Timer timer;
+	private long score = 0;
 	private SpaceShip y;
 	private double difficulty = 0.1;
  	public GameEngine(GamePanel gp, SpaceShip y) {
  		this.gp = gp;
  		this.y = y;
- 		//gp.updateGameUI();
 		gp.sprites.add(y);
  			
 		timer = new Timer(50, new ActionListener() {
@@ -48,10 +48,11 @@ import java.util.Iterator;
 			if(!e.isAlive()){
 				e_iter.remove();
 				gp.sprites.remove(e);
+				score += 100;
 				
 			}
 		}	
-		gp.updateGameUI();
+		gp.updateGameUI(this);
 		Rectangle2D.Double yr = y.getRectangle();
 		Rectangle2D.Double er;
 		for(Enemy e : enemies){
@@ -76,7 +77,11 @@ import java.util.Iterator;
 		case KeyEvent.VK_D:
 			difficulty += 0.1;
 			break;
-	}}
+		}
+	}
+	public long getScore(){
+		return score;
+	}
 	@Override
 	public void keyPressed(KeyEvent e) {
 		controlVehicle(e);
