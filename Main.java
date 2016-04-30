@@ -9,7 +9,7 @@ public class Main{
 		JFrame gframe = new JFrame("Space War");
 		gframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gframe.setSize(400, 650);
-		SpaceShip y = new SpaceShip(180, 550, 20, 20);
+		SpaceShip y = new SpaceShip(140, 480, 60, 100);
 		gframe.getContentPane().setLayout(new BorderLayout());
 		GamePanel gp = new GamePanel();
 		GameEngine engine = new GameEngine(gp, y);
